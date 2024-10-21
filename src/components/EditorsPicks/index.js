@@ -6,24 +6,17 @@ const EditorsPicks = props => {
   const {editorsPicksData} = props
   const {id, name, images} = editorsPicksData
 
-  let image
-
-  if (images !== undefined) {
-    image = images.reduce((prev, curr) =>
-      prev.height > curr.height ? prev : curr,
-    )
-    image = image.url
-  } else {
-    image = null
-  }
+  const imageUrl = images[0]
 
   return (
-    <Link to={`/playlists-details/${id}`}>
-      <div>
-        <img src={image} alt="featured playlists" />
-        <p>{name}</p>
-      </div>
-    </Link>
+    <li>
+      <Link to={`/playlists-details/${id}`}>
+        <div>
+          <img src={imageUrl.url} alt="featured playlists" />
+          <p>{name}</p>
+        </div>
+      </Link>
+    </li>
   )
 }
 

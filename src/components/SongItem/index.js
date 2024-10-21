@@ -1,3 +1,4 @@
+import ReactAudioPlayer from 'react-audio-player'
 import './index.css'
 
 const SongItem = props => {
@@ -5,7 +6,7 @@ const SongItem = props => {
   return (
     <div>
       <p>{songData.name}</p>
-      <a href={songData.previewUrl}>Play Song</a>
+      <ReactAudioPlayer src={songData.previewUrl} controls autoplay loop />
     </div>
   )
 }
