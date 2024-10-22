@@ -7,10 +7,16 @@ const GenresMoods = props => {
 
   const iconUrl = icons[0]
   return (
-    <li>
-      <Link to={`/category-playlists/${id}`}>
-        <img src={iconUrl.url} alt="category" />
-        <p>{name}</p>
+    <li className="genres-moods-item">
+      <Link className="link-item" to={`/category-playlists/${id}`}>
+        <div className="genres-moods-content">
+          <img
+            className="genres-moods-item-image"
+            src={iconUrl.url}
+            alt="category"
+          />
+          <p className="genres-moods-item-name">{name}</p>
+        </div>
       </Link>
     </li>
   )

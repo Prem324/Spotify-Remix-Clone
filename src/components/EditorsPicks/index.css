@@ -1,0 +1,29 @@
+.editors-picks-item {
+  margin: 0px 30px 20px 0px;
+  width: 150px;
+  height: 200px;
+}
+
+.link-item {
+  text-decoration: none;
+}
+
+.editors-picks-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.editors-picks-item-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+.editors-picks-item-name {
+  color: #f8fafc;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}

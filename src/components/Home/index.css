@@ -1,0 +1,12 @@
+.home-responsive-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #181818;
+}
+
+.home-container {
+  background-color: #181818;
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px;
+}

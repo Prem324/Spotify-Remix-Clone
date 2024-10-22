@@ -1,36 +1,14 @@
-import {Component} from 'react'
-import SongItem from '../SongItem'
+import ReactAudioPlayer from 'react-audio-player'
+import './index.css'
 
-class Player extends Component {
-  state = {
-    ...this.props,
-  }
-
-  renderSongsList = () => {
-    const {musicList, displayInfo} = this.state
-
-    return (
-      <>
-        {musicList.map((item, key = 0) => (
-          <SongItem
-            songData={item}
-            audioData={this.audioData}
-            displayInfo={displayInfo}
-            key={key}
-          />
-        ))}
-      </>
-    )
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Songs List</h1>
-        <ul>{this.renderSongsList()}</ul>
-      </div>
-    )
-  }
+const Player = props => {
+  const {songData} = props
+  return (
+    <div>
+      <p>{songData.name}</p>
+      <ReactAudioPlayer src={songData.previewUrl} controls autoplay loop />
+    </div>
+  )
 }
 
 export default Player

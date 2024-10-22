@@ -1,7 +1,8 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import LoaderView from '../LoaderView'
-import Player from '../Player'
+import SongItem from '../SongItem'
+import BackNavigation from '../BackNavigation'
 
 import './index.css'
 
@@ -88,7 +89,14 @@ class NewReleasePlaylist extends Component {
         {isLoading ? (
           <LoaderView />
         ) : (
-          <Player musicList={musicList} displayInfo={displayInfo} />
+          <>
+            <BackNavigation />
+            <SongItem
+              musicList={musicList}
+              displayInfo={displayInfo}
+              section="New Releases"
+            />
+          </>
         )}
       </div>
     )

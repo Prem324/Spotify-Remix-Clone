@@ -1,0 +1,38 @@
+.category-item {
+  margin: 0px 30px 20px 0px;
+  width: 166px;
+  height: 280px;
+}
+
+.link-item {
+  text-decoration: none;
+}
+
+.category-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.category-item-image {
+  width: 166px;
+  height: 166px;
+  border-radius: 8px;
+}
+
+.category-item-name {
+  color: #f8fafc;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.category-item-tracks-count {
+  font-size: 18px;
+  color: #64748b;
+  font-weight: 600;
+  margin-top: 0;
+}

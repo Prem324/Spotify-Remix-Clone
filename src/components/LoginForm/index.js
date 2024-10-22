@@ -2,6 +2,8 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
 
+import './index.css'
+
 class LoginForm extends Component {
   state = {username: '', password: '', showErrorMsg: false, errorMessage: ''}
 
@@ -49,30 +51,39 @@ class LoginForm extends Component {
       return <Redirect to="/" />
     }
     return (
-      <div>
+      <div className="loginform-container">
         <div>
-          <form onSubmit={this.onLogin}>
+          <form className="form-container" onSubmit={this.onLogin}>
             <img
-              src="https://res.cloudinary.com/dlakv8a0n/image/upload/v1729151434/SpotifyRemix/music-icon.png"
+              src="https://res.cloudinary.com/dlakv8a0n/image/upload/v1729151434/SpotifyRemix/music-icon-4x.png"
               alt="login website logo"
+              className="login-website-logo"
             />
-            <h1>Spotify Remix</h1>
-            <label htmlFor="username">USERNAME</label>
+            <h1 className="form-heading">Spotify Remix</h1>
+            <label className="form-label" htmlFor="username">
+              USERNAME
+            </label>
             <input
               onChange={this.onChanageUsername}
               value={username}
               id="username"
               type="text"
+              className="form-input"
             />
-            <label htmlFor="password">PASSWORD</label>
+            <label className="form-label" htmlFor="password">
+              PASSWORD
+            </label>
             <input
               onChange={this.onChanagePassword}
               value={password}
               id="password"
               type="password"
+              className="form-input"
             />
-            <button type="submit">Login</button>
-            {showErrorMsg && <p>{errorMessage}</p>}
+            <button className="login-button" type="submit">
+              Login
+            </button>
+            {showErrorMsg && <p className="error-msg">{errorMessage}</p>}
           </form>
         </div>
       </div>

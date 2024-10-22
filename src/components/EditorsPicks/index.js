@@ -9,11 +9,15 @@ const EditorsPicks = props => {
   const imageUrl = images[0]
 
   return (
-    <li>
-      <Link to={`/playlists-details/${id}`}>
-        <div>
-          <img src={imageUrl.url} alt="featured playlists" />
-          <p>{name}</p>
+    <li className="editors-picks-item">
+      <Link className="link-item" to={`/playlists-details/${id}`}>
+        <div className="editors-picks-content">
+          <img
+            className="editors-picks-item-image"
+            src={imageUrl.url}
+            alt="featured playlists"
+          />
+          <p className="editors-picks-item-name">{name}</p>
         </div>
       </Link>
     </li>

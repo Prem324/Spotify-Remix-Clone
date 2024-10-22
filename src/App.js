@@ -1,11 +1,12 @@
 import {Switch, Route, Redirect} from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
-import NotFound from './components/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import EditorPickPlaylist from './components/EditorPickPlaylist'
 import NewReleasePlaylist from './components/NewReleasePlaylist'
-import GenreMoodPlaylist from './components/GenreMoodPlaylist'
+import GenresMoodsPlaylistsDetails from './components/GenresMoodsPlaylistsDetails'
+import NotFound from './components/NotFound'
+
 import './App.css'
 
 // write your code here
@@ -25,8 +26,8 @@ const App = () => (
     />
     <ProtectedRoute
       exact
-      paht="/category-playlists/:playlistId"
-      component={GenreMoodPlaylist}
+      path="/category-playlists/:playlistId"
+      component={GenresMoodsPlaylistsDetails}
     />
     <Route path="/not-found" component={NotFound} />
     <Redirect to="/not-found" />

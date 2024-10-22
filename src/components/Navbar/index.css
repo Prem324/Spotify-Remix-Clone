@@ -1,0 +1,27 @@
+.navbar-container {
+  background-color: #040306;
+  height: 1024px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  width: 98px;
+  align-items: center;
+}
+
+.navbar-logo {
+  width: 82px;
+  height: 33px;
+}
+
+.logout-button {
+  font-size: 12px;
+  background: transparent;
+  border: none;
+  color: #9b9b9b;
+  cursor: pointer;
+}
+
+.logout-icon {
+  font-size: 30px;
+}

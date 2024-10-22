@@ -1,0 +1,29 @@
+.new-releases-item {
+  margin: 0px 30px 20px 0px;
+  width: 150px;
+  height: 200px;
+}
+
+.link-item {
+  text-decoration: none;
+}
+
+.new-releases-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-releases-item-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+}
+
+.new-releases-item-name {
+  color: #f8fafc;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}

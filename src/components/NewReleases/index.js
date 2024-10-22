@@ -8,11 +8,15 @@ const NewReleases = props => {
   const image = images[1]
 
   return (
-    <li>
-      <Link to={`album-details/${id}`}>
-        <div>
-          <p>{name}</p>
-          <img src={image.url} alt="new release album" />
+    <li className="new-releases-item">
+      <Link className="link-item" to={`album-details/${id}`}>
+        <div className="new-releases-content">
+          <img
+            className="new-releases-item-image"
+            src={image.url}
+            alt="new release album"
+          />
+          <p className="new-releases-item-name">{name}</p>
         </div>
       </Link>
     </li>

@@ -1,15 +1,25 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import SongItem from '../SongItem'
+import BackNavigation from '../BackNavigation'
 import LoaderView from '../LoaderView'
-import Player from '../Player'
+import FailureView from '../FailureView'
+import Navbar from '../Navbar'
 
 import './index.css'
+
+const apiStatusConstants = {
+  initial: 'INITIAL',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+  inProgress: 'IN_PROGRESS',
+}
 
 class EditorPickPlaylist extends Component {
   state = {
     musicList: [],
     displayInfo: {},
-    isLoading: true,
+    apiStatus: apiStatusConstants.initial,
   }
 
   componentDidMount = () => {
@@ -17,6 +27,7 @@ class EditorPickPlaylist extends Component {
   }
 
   getSpecificPlaylist = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const {match} = this.props
     const {params} = match
     const {playlistId} = params
@@ -75,21 +86,51 @@ class EditorPickPlaylist extends Component {
       }))
       this.setState({
         musicList: updatedTracksData,
-        isLoading: false,
         displayInfo: updatedPlaylistInfo,
+        apiStatus: apiStatusConstants.success,
       })
+    } else {
+      this.setState({apiStatus: apiStatusConstants.failure})
+    }
+  }
+
+  renderSpecificPlaylist = () => {
+    const {musicList, displayInfo} = this.state
+    return (
+      <SongItem
+        musicList={musicList}
+        displayInfo={displayInfo}
+        section="Editors Picks"
+      />
+    )
+  }
+
+  renderFailureView = () => <FailureView />
+
+  renderLoadingView = () => <LoaderView />
+
+  renderApiStatusView = () => {
+    const {apiStatus} = this.state
+    switch (apiStatus) {
+      case apiStatusConstants.success:
+        return this.renderSpecificPlaylist()
+      case apiStatusConstants.failure:
+        return this.renderFailureView()
+      case apiStatusConstants.inProgress:
+        return this.renderLoadingView()
+      default:
+        return null
     }
   }
 
   render() {
-    const {isLoading, musicList, displayInfo} = this.state
     return (
-      <div>
-        {isLoading ? (
-          <LoaderView />
-        ) : (
-          <Player musicList={musicList} displayInfo={displayInfo} />
-        )}
+      <div className="editor-pick-playlist-responsive-container">
+        <Navbar />
+        <div className="editor-pick-playlist-container">
+          <BackNavigation />
+          {this.renderApiStatusView()}
+        </div>
       </div>
     )
   }
