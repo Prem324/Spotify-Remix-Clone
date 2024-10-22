@@ -27,19 +27,22 @@ class Section3 extends Component {
       apiStatus: apiStatusConstants.inProgress,
     })
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = 'https://apis2.ccbp.in/spotify-clone/new-releases'
-    const options = {
+    const newReleasesApiUrl = 'https://apis2.ccbp.in/spotify-clone/new-releases'
+    const newReleasesOptions = {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    const response = await fetch(apiUrl, options)
-    console.log(response)
-    if (response.ok) {
-      const data = await response.json()
-      console.log(data)
-      const updatedAlbumsData = data.albums.items.map(item => ({
+    const newReleasesResponse = await fetch(
+      newReleasesApiUrl,
+      newReleasesOptions,
+    )
+    console.log(newReleasesResponse)
+    if (newReleasesResponse.ok) {
+      const newReleasesData = await newReleasesResponse.json()
+      console.log(newReleasesData)
+      const updatedAlbumsData = newReleasesData.albums.items.map(item => ({
         id: item.id,
         name: item.name,
         images: item.images,

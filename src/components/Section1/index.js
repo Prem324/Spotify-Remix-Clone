@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import EditorsPicks from '../EditorsPicks'
+import FeaturedPlaylist from '../FeaturedPlaylist'
 import FailureView from '../FailureView'
 import LoaderView from '../LoaderView'
 import './index.css'
@@ -14,39 +14,45 @@ const apiStatusConstants = {
 
 class Section1 extends Component {
   state = {
-    editorsPicksData: [],
+    featuredPlaylistsData: [],
     apiStatus: apiStatusConstants.initial,
   }
 
   componentDidMount = () => {
-    this.getEditorsPickData()
+    this.getFeaturedPlaylistsData()
   }
 
-  getEditorsPickData = async () => {
+  getFeaturedPlaylistsData = async () => {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = 'https://apis2.ccbp.in/spotify-clone/featured-playlists'
+    const featuredPlaylistsApiUrl =
+      'https://apis2.ccbp.in/spotify-clone/featured-playlists'
 
-    const options = {
+    const featuredPlaylistsOptions = {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    const response = await fetch(apiUrl, options)
-    console.log(response)
-    if (response.ok) {
-      const data = await response.json()
-      console.log(data)
-      const upatedPlaylistsData = data.playlists.items.map(item => ({
-        id: item.id,
-        name: item.name,
-        images: item.images,
-      }))
+    const featuredPlaylistsResponse = await fetch(
+      featuredPlaylistsApiUrl,
+      featuredPlaylistsOptions,
+    )
+    console.log(featuredPlaylistsResponse)
+    if (featuredPlaylistsResponse.ok) {
+      const featuredPlaylistsData = await featuredPlaylistsResponse.json()
+      console.log(featuredPlaylistsData)
+      const upatedPlaylistsData = featuredPlaylistsData.playlists.items.map(
+        item => ({
+          id: item.id,
+          name: item.name,
+          images: item.images,
+        }),
+      )
       this.setState({
-        editorsPicksData: upatedPlaylistsData,
+        featuredPlaylistsData: upatedPlaylistsData,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -55,12 +61,12 @@ class Section1 extends Component {
   }
 
   renderEditorsPicksList = () => {
-    const {editorsPicksData} = this.state
+    const {featuredPlaylistsData} = this.state
     return (
       <div className="editors-picks-container">
         <ul className="editors-picks-list">
-          {editorsPicksData.map(item => (
-            <EditorsPicks editorsPicksData={item} key={item.id} />
+          {featuredPlaylistsData.map(item => (
+            <FeaturedPlaylist featuredPlaylistsData={item} key={item.id} />
           ))}
         </ul>
       </div>
@@ -68,7 +74,7 @@ class Section1 extends Component {
   }
 
   onTryAgain = () => {
-    this.getEditorsPickData()
+    this.getFeaturedPlaylistsData()
   }
 
   renderLoadingView = () => <LoaderView />

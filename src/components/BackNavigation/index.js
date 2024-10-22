@@ -19,8 +19,8 @@ class BackNavigation extends Component {
           className="back-button"
         >
           <IoMdArrowBack className="back-arrow" />
+          Back
         </button>
-        <p className="button-text">Back</p>
       </div>
     )
   }

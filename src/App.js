@@ -2,9 +2,10 @@ import {Switch, Route, Redirect} from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
 import ProtectedRoute from './components/ProtectedRoute'
-import EditorPickPlaylist from './components/EditorPickPlaylist'
-import NewReleasePlaylist from './components/NewReleasePlaylist'
-import GenresMoodsPlaylistsDetails from './components/GenresMoodsPlaylistsDetails'
+import FeaturedPlaylistDetails from './components/FeaturedPlaylistDetails'
+import CategoryPlaylists from './components/CategoryPlaylists'
+import NewReleaseAlbumDetails from './components/NewReleaseAlbumDetails'
+
 import NotFound from './components/NotFound'
 
 import './App.css'
@@ -17,17 +18,17 @@ const App = () => (
     <ProtectedRoute
       exact
       path="/playlists-details/:playlistId"
-      component={EditorPickPlaylist}
-    />
-    <ProtectedRoute
-      exact
-      path="/album-details/:playlistId"
-      component={NewReleasePlaylist}
+      component={FeaturedPlaylistDetails}
     />
     <ProtectedRoute
       exact
       path="/category-playlists/:playlistId"
-      component={GenresMoodsPlaylistsDetails}
+      component={CategoryPlaylists}
+    />
+    <ProtectedRoute
+      exact
+      path="/album-details/:playlistId"
+      component={NewReleaseAlbumDetails}
     />
     <Route path="/not-found" component={NotFound} />
     <Redirect to="/not-found" />

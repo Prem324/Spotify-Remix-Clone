@@ -1,6 +1,6 @@
 import './index.css'
 
-const Category = props => {
+const CategoryPlaylistItem = props => {
   const {categoryDetails} = props
   const {name, images, tracks} = categoryDetails
   const imageUrl = images[0]
@@ -19,4 +19,4 @@ const Category = props => {
   )
 }
 
-export default Category
+export default CategoryPlaylistItem

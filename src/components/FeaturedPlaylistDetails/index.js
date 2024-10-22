@@ -1,10 +1,10 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import SongItem from '../SongItem'
 import BackNavigation from '../BackNavigation'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
 import Navbar from '../Navbar'
+import FeaturePlaylistTrackItem from '../FeaturePlaylistTrackItem'
 
 import './index.css'
 
@@ -15,10 +15,10 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class EditorPickPlaylist extends Component {
+class FeaturedPlaylistDetails extends Component {
   state = {
-    musicList: [],
-    displayInfo: {},
+    playlistDetailsData: [],
+    playlistDisplayInfo: {},
     apiStatus: apiStatusConstants.initial,
   }
 
@@ -58,7 +58,9 @@ class EditorPickPlaylist extends Component {
         primaryColor: data.primary_color,
         public: data.public,
         snapshotId: data.snapshot_id,
-        tracks: data.tracks,
+        tracks: data.tracks.items.map(item => ({
+          addedAt: item.added_at,
+        })),
         type: data.type,
         uri: data.uri,
       }
@@ -85,8 +87,8 @@ class EditorPickPlaylist extends Component {
         uri: item.track.uri,
       }))
       this.setState({
-        musicList: updatedTracksData,
-        displayInfo: updatedPlaylistInfo,
+        playlistDetailsData: updatedTracksData,
+        playlistDisplayInfo: updatedPlaylistInfo,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -95,17 +97,47 @@ class EditorPickPlaylist extends Component {
   }
 
   renderSpecificPlaylist = () => {
-    const {musicList, displayInfo} = this.state
+    const {playlistDetailsData, playlistDisplayInfo} = this.state
     return (
-      <SongItem
-        musicList={musicList}
-        displayInfo={displayInfo}
-        section="Editors Picks"
-      />
+      <div className="playlist-info">
+        <BackNavigation />
+        <div className="playlist-info-container">
+          <img
+            src={playlistDisplayInfo.images[0].url}
+            className="playlist-image"
+            alt="featured playlist"
+          />
+          <div className="playlist-text-content">
+            <p className="playlist-type">Editors Picks</p>
+            <h1 className="playlist-name">{playlistDisplayInfo.name}</h1>
+          </div>
+        </div>
+        <div className="playlist-details-headers">
+          <span>Track</span>
+          <span>Album</span>
+          <span>Artist</span>
+          <span>Time</span>
+          <span>Added</span>
+        </div>
+        <hr />
+        <ol className="tracks-list">
+          {playlistDetailsData.map(eachPlay => (
+            <FeaturePlaylistTrackItem
+              trackItemData={eachPlay}
+              playlistDisplayInfo={playlistDisplayInfo}
+              key={eachPlay.id}
+            />
+          ))}
+        </ol>
+      </div>
     )
   }
 
-  renderFailureView = () => <FailureView />
+  onTryAgain = () => {
+    this.getSpecificPlaylist()
+  }
+
+  renderFailureView = () => <FailureView onTryAgain={this.onTryAgain} />
 
   renderLoadingView = () => <LoaderView />
 
@@ -125,10 +157,9 @@ class EditorPickPlaylist extends Component {
 
   render() {
     return (
-      <div className="editor-pick-playlist-responsive-container">
+      <div className="featured-playlist-responsive-container">
         <Navbar />
-        <div className="editor-pick-playlist-container">
-          <BackNavigation />
+        <div className="featured-playlist-container">
           {this.renderApiStatusView()}
         </div>
       </div>
@@ -136,4 +167,4 @@ class EditorPickPlaylist extends Component {
   }
 }
 
-export default EditorPickPlaylist
+export default FeaturedPlaylistDetails

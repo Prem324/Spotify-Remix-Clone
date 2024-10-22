@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import Category from '../Category'
+import CategoryPlaylistItem from '../CategoryPlaylistItem'
 import BackNavigation from '../BackNavigation'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
@@ -15,7 +15,7 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-class GenresMoodsPlaylistsDetails extends Component {
+class CategoryPlaylists extends Component {
   state = {specificGenreDetailsData: [], apiStatus: apiStatusConstants.initial}
 
   componentDidMount = () => {
@@ -59,15 +59,22 @@ class GenresMoodsPlaylistsDetails extends Component {
     const {specificGenreDetailsData} = this.state
 
     return (
-      <ul className="specific-genre-details-list">
-        {specificGenreDetailsData.map(item => (
-          <Category categoryDetails={item} key={item.id} />
-        ))}
-      </ul>
+      <>
+        <BackNavigation />
+        <ul className="specific-genre-details-list">
+          {specificGenreDetailsData.map(item => (
+            <CategoryPlaylistItem categoryDetails={item} key={item.id} />
+          ))}
+        </ul>
+      </>
     )
   }
 
-  renderFailureView = () => <FailureView />
+  onTryAgain = () => {
+    this.getSpecificGenreDetails()
+  }
+
+  renderFailureView = () => <FailureView onTryAgain={this.onTryAgain} />
 
   renderLoadingView = () => <LoaderView />
 
@@ -90,7 +97,6 @@ class GenresMoodsPlaylistsDetails extends Component {
       <div className="specific-genre-details-responsive-container">
         <Navbar />
         <div className="specific-genre-details-container">
-          <BackNavigation />
           {this.renderApiStausView()}
         </div>
       </div>
@@ -98,4 +104,4 @@ class GenresMoodsPlaylistsDetails extends Component {
   }
 }
 
-export default GenresMoodsPlaylistsDetails
+export default CategoryPlaylists

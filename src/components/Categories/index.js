@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom'
 import './index.css'
 
-const GenresMoods = props => {
-  const {genresMoodsData} = props
-  const {id, name, icons} = genresMoodsData
+const Categories = props => {
+  const {categoriesData} = props
+  const {id, name, icons} = categoriesData
 
   const iconUrl = icons[0]
   return (
@@ -22,4 +22,4 @@ const GenresMoods = props => {
   )
 }
 
-export default GenresMoods
+export default Categories

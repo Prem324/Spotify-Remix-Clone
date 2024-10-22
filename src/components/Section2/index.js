@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
-import GenresMoods from '../GenresMoods'
+import Categories from '../Categories'
 import FailureView from '../FailureView'
 import LoaderView from '../LoaderView'
 import './index.css'
@@ -14,39 +14,41 @@ const apiStatusConstants = {
 
 class Section2 extends Component {
   state = {
-    genresMoodsData: [],
+    categoriesData: [],
     apiStatus: apiStatusConstants.initial,
   }
 
   componentDidMount = () => {
-    this.getGenresMoodsData()
+    this.getCategoriesData()
   }
 
-  getGenresMoodsData = async () => {
+  getCategoriesData = async () => {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
     const jwtToken = Cookies.get('jwt_token')
-    const apiUrl = 'https://apis2.ccbp.in/spotify-clone/categories'
+    const categoriesApiUrl = 'https://apis2.ccbp.in/spotify-clone/categories'
 
-    const options = {
+    const categoriesOptions = {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
     }
-    const response = await fetch(apiUrl, options)
-    console.log(response)
-    if (response.ok) {
-      const data = await response.json()
-      console.log(data)
-      const updatedCategoriesData = data.categories.items.map(item => ({
-        id: item.id,
-        name: item.name,
-        icons: item.icons,
-      }))
+    const categoriesResponse = await fetch(categoriesApiUrl, categoriesOptions)
+    console.log(categoriesResponse)
+    if (categoriesResponse.ok) {
+      const categoriesData = await categoriesResponse.json()
+      console.log(categoriesData)
+      const updatedCategoriesData = categoriesData.categories.items.map(
+        item => ({
+          id: item.id,
+          name: item.name,
+          icons: item.icons,
+        }),
+      )
       this.setState({
-        genresMoodsData: updatedCategoriesData,
+        categoriesData: updatedCategoriesData,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -55,12 +57,12 @@ class Section2 extends Component {
   }
 
   renderGenresMoodsList = () => {
-    const {genresMoodsData} = this.state
+    const {categoriesData} = this.state
     return (
       <div className="genres-moods-container">
         <ul className="genres-moods-list">
-          {genresMoodsData.map(item => (
-            <GenresMoods genresMoodsData={item} key={item.id} />
+          {categoriesData.map(item => (
+            <Categories categoriesData={item} key={item.id} />
           ))}
         </ul>
       </div>
@@ -68,7 +70,7 @@ class Section2 extends Component {
   }
 
   onTryAgain = () => {
-    this.getGenresMoodsData()
+    this.getCategoriesData()
   }
 
   renderLoadingView = () => <LoaderView />

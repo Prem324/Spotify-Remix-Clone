@@ -2,9 +2,9 @@ import {Link} from 'react-router-dom'
 
 import './index.css'
 
-const EditorsPicks = props => {
-  const {editorsPicksData} = props
-  const {id, name, images} = editorsPicksData
+const FeaturedPlaylist = props => {
+  const {featuredPlaylistsData} = props
+  const {id, name, images} = featuredPlaylistsData
 
   const imageUrl = images[0]
 
@@ -24,4 +24,4 @@ const EditorsPicks = props => {
   )
 }
 
-export default EditorsPicks
+export default FeaturedPlaylist
