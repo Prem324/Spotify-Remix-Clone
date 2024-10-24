@@ -5,7 +5,7 @@ const NewReleases = props => {
   const {newReleasesData} = props
   const {id, name, images} = newReleasesData
 
-  const image = images[1]
+  const image = images[0]
 
   return (
     <li className="new-releases-item">

@@ -4,7 +4,7 @@ import BackNavigation from '../BackNavigation'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
 import Navbar from '../Navbar'
-import FeaturePlaylistTrackItem from '../FeaturePlaylistTrackItem'
+import Player from '../Player'
 
 import './index.css'
 
@@ -17,8 +17,8 @@ const apiStatusConstants = {
 
 class FeaturedPlaylistDetails extends Component {
   state = {
-    playlistDetailsData: [],
-    playlistDisplayInfo: {},
+    musicList: [],
+    displayInfo: {},
     apiStatus: apiStatusConstants.initial,
   }
 
@@ -87,8 +87,8 @@ class FeaturedPlaylistDetails extends Component {
         uri: item.track.uri,
       }))
       this.setState({
-        playlistDetailsData: updatedTracksData,
-        playlistDisplayInfo: updatedPlaylistInfo,
+        musicList: updatedTracksData,
+        displayInfo: updatedPlaylistInfo,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -97,39 +97,13 @@ class FeaturedPlaylistDetails extends Component {
   }
 
   renderSpecificPlaylist = () => {
-    const {playlistDetailsData, playlistDisplayInfo} = this.state
+    const {musicList, displayInfo} = this.state
     return (
-      <div className="playlist-info">
-        <BackNavigation />
-        <div className="playlist-info-container">
-          <img
-            src={playlistDisplayInfo.images[0].url}
-            className="playlist-image"
-            alt="featured playlist"
-          />
-          <div className="playlist-text-content">
-            <p className="playlist-type">Editors Picks</p>
-            <h1 className="playlist-name">{playlistDisplayInfo.name}</h1>
-          </div>
-        </div>
-        <div className="playlist-details-headers">
-          <span>Track</span>
-          <span>Album</span>
-          <span>Artist</span>
-          <span>Time</span>
-          <span>Added</span>
-        </div>
-        <hr />
-        <ol className="tracks-list">
-          {playlistDetailsData.map(eachPlay => (
-            <FeaturePlaylistTrackItem
-              trackItemData={eachPlay}
-              playlistDisplayInfo={playlistDisplayInfo}
-              key={eachPlay.id}
-            />
-          ))}
-        </ol>
-      </div>
+      <Player
+        musicList={musicList}
+        displayInfo={displayInfo}
+        section="Editor's Picks"
+      />
     )
   }
 

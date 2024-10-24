@@ -1,0 +1,132 @@
+.player-container {
+}
+
+.playlist-container {
+}
+
+#columns-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#column-name {
+}
+
+.playlist {
+  list-style-type: decimal;
+}
+
+.music-controls {
+  height: 60px;
+  width: 100%;
+  background-color: #181818;
+  position: fixed;
+  bottom: 0px;
+  left: 100px;
+  right: 0px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  border-top: 1px solid gray;
+}
+
+.audio-player-card {
+}
+
+.album-details-track {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.album-image-track {
+  width: 60px;
+  height: 50px;
+}
+
+.album-content-track {
+  margin-left: 8px;
+}
+
+.album-name-track {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.artist-name-track {
+  color: #ffffff;
+  font-size: 6px;
+}
+
+.play-pause-button {
+  padding: 6px;
+  background-color: white;
+  border-radius: 50%;
+  border: none;
+  color: #181818;
+  font-weight: 700;
+  margin-right: 10px;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+.progress-bar-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-bar {
+  accent-color: #1db954;
+  margin-left: 10px;
+  width: 400px;
+  height: 6px;
+}
+
+span {
+  font-size: 6px;
+  color: gray;
+}
+
+.track-control-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.volume-control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.volume-icon {
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.volume-bar {
+  accent-color: #1db954;
+  height: 4px;
+}
+
+.mute-unmute-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.volume-control span {
+  margin-left: 8px;
+}

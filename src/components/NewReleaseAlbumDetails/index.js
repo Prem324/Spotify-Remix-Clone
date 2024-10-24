@@ -4,7 +4,6 @@ import BackNavigation from '../BackNavigation'
 import LoaderView from '../LoaderView'
 import FailureView from '../FailureView'
 import Navbar from '../Navbar'
-import NewReleasesAlbumTrackItem from '../NewReleasesAlbumTrackItem'
 
 import './index.css'
 
@@ -17,8 +16,8 @@ const apiStatusConstants = {
 
 class NewReleaseAlbumDetails extends Component {
   state = {
-    albumDetailsData: [],
-    albumDisplayInfo: {},
+    musicList: [],
+    displayInfo: {},
     apiStatus: apiStatusConstants.initial,
   }
 
@@ -92,8 +91,8 @@ class NewReleaseAlbumDetails extends Component {
         }),
       )
       this.setState({
-        albumDetailsData: updatedAlbumTracksData,
-        albumDisplayInfo: updatedAlbumDetailsInfo,
+        musicList: updatedAlbumTracksData,
+        displayInfo: updatedAlbumDetailsInfo,
         apiStatus: apiStatusConstants.success,
       })
     } else {
@@ -101,41 +100,7 @@ class NewReleaseAlbumDetails extends Component {
     }
   }
 
-  renderAlbumDetailsSection = () => {
-    const {albumDisplayInfo, albumDetailsData} = this.state
-    return (
-      <div className="album-info">
-        <div className="album-info-container">
-          <img
-            className="album-image"
-            src={albumDisplayInfo.images[0].url}
-            alt="new release album"
-          />
-          <div className="album-text-content">
-            <p className="album-type">New Releases</p>
-            <h1 className="album-name">{albumDisplayInfo.name}</h1>
-            <p className="album-label">{albumDisplayInfo.label}</p>
-          </div>
-        </div>
-        <div className="album-details-headers">
-          <span>#</span>
-          <span>Track</span>
-          <span>Time</span>
-          <span>Artist</span>
-        </div>
-        <hr />
-        <ol id="tracks-list">
-          {albumDetailsData.map(eachTrack => (
-            <NewReleasesAlbumTrackItem
-              trackItemData={eachTrack}
-              albumDisplayInfo={albumDisplayInfo}
-              key={eachTrack.id}
-            />
-          ))}
-        </ol>
-      </div>
-    )
-  }
+  renderAlbumDetailsSection = () => <h1>Player</h1>
 
   renderAlbumDetails = () => (
     <div>

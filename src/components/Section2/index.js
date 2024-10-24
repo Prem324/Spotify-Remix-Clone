@@ -36,10 +36,8 @@ class Section2 extends Component {
       },
     }
     const categoriesResponse = await fetch(categoriesApiUrl, categoriesOptions)
-    console.log(categoriesResponse)
     if (categoriesResponse.ok) {
       const categoriesData = await categoriesResponse.json()
-      console.log(categoriesData)
       const updatedCategoriesData = categoriesData.categories.items.map(
         item => ({
           id: item.id,

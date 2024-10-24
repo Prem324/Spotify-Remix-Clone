@@ -40,10 +40,8 @@ class Section1 extends Component {
       featuredPlaylistsApiUrl,
       featuredPlaylistsOptions,
     )
-    console.log(featuredPlaylistsResponse)
     if (featuredPlaylistsResponse.ok) {
       const featuredPlaylistsData = await featuredPlaylistsResponse.json()
-      console.log(featuredPlaylistsData)
       const upatedPlaylistsData = featuredPlaylistsData.playlists.items.map(
         item => ({
           id: item.id,

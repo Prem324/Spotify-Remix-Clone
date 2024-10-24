@@ -38,10 +38,8 @@ class Section3 extends Component {
       newReleasesApiUrl,
       newReleasesOptions,
     )
-    console.log(newReleasesResponse)
     if (newReleasesResponse.ok) {
       const newReleasesData = await newReleasesResponse.json()
-      console.log(newReleasesData)
       const updatedAlbumsData = newReleasesData.albums.items.map(item => ({
         id: item.id,
         name: item.name,

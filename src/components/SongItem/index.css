@@ -1,0 +1,39 @@
+span {
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-align: left !important;
+  text-overflow: ellipsis;
+}
+
+.song-row {
+  margin-bottom: 20px;
+  height: 22px;
+  overflow: hidden;
+}
+
+#song-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+}
+
+#song-name {
+  display: flex;
+  width: 100px;
+  text-align: center;
+}
+
+#album-name {
+  display: flex;
+  width: 100px;
+  text-align: center;
+}
+
+#duration {
+}
+
+#artist-name {
+}
+#added {
+}
